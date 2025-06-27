@@ -1,8 +1,9 @@
 require 'rails_helper'
 RSpec.describe WeatherService do
   let(:zip_code) { '452009' } # Indore ZIP
+  let(:country_code) { 'in' } # Default to India
 
-  subject(:service) { described_class.new(zip_code) }
+  subject(:service) { described_class.new(zip_code, country_code) }
 
   describe "#get_forecast", :vcr do
     it "returns the current temperature for a valid zip code" do
