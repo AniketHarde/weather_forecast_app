@@ -18,6 +18,8 @@ gem 'geocoder'
 # In-memory data structure store, used as a database, cache, and message broker [https://github.com/redis/redis-rb]
 gem 'redis'
 
+gem 'activerecord', '~> 8.0'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
