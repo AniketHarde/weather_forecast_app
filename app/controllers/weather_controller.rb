@@ -1,5 +1,6 @@
 class WeatherController < ApplicationController
   def index
+    flash.clear
   end
 
   def show
@@ -10,8 +11,9 @@ class WeatherController < ApplicationController
 
     begin
       @forecast = service.get_forecast
-    rescue => e
-      @error = e.message
+    rescue StandardError => e
+      flash[:alert] = "Failed to fetch forecast: #{e.message}"
+      render :index
     end
   end
 end

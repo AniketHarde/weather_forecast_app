@@ -1,15 +1,18 @@
-<h1>Check Weather Forecast</h1>
 
-<%= form_with url: weather_show_path, method: :post, local: true do %>
+<h1>Weather Forecast</h1>
+
+<%= form_with url: weather_show_path, method: :post, local: true do |form| %>
   <div>
-    <%= label_tag :zip_code, "Zip Code:" %>
-    <%= text_field_tag :zip_code %>
+    <%= form.label :zip, "Enter ZIP Code:" %>
+    <%= form.text_field :zip_code, required: true %>
   </div>
-
   <div>
-    <%= label_tag :country_code, "Country Code (e.g., in, us):" %>
-    <%= text_field_tag :country_code, "in" %>
+    <%= form.label :country_code, "Country Code (e.g., in, us):" %>
+    <%= form.text_field :country_code %>
   </div>
+  <%= form.submit "Get Forecast" %>
+<% end %>
 
-  <%= submit_tag "Get Forecast" %>
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>
