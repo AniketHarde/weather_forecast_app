@@ -1,0 +1,10 @@
+<h1>Weather Forecast</h1>
+
+<% if @error %>
+  <p style="color: red;"><%= @error %></p>
+<% else %>
+  <p><strong>Temperature:</strong> <%= @forecast[:temperature] %> °C</p>
+  <p><strong>From Cache:</strong> <%= @forecast[:from_cache] %></p>
+<% end %>
+
+<%= link_to "Back", root_path %>

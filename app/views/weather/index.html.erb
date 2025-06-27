@@ -1,0 +1,15 @@
+<h1>Check Weather Forecast</h1>
+
+<%= form_with url: weather_show_path, method: :post, local: true do %>
+  <div>
+    <%= label_tag :zip_code, "Zip Code:" %>
+    <%= text_field_tag :zip_code %>
+  </div>
+
+  <div>
+    <%= label_tag :country_code, "Country Code (e.g., in, us):" %>
+    <%= text_field_tag :country_code, "in" %>
+  </div>
+
+  <%= submit_tag "Get Forecast" %>
+<% end %>

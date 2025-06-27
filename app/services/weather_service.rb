@@ -3,7 +3,7 @@ require "pry"
 class WeatherService
   BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-  def initialize(zip_code, country_code = "in")
+  def initialize(zip_code: "450229", country_code: "in")
     @zip_code = zip_code
     @country_code = country_code
     @api_key = Rails.application.credentials.dig(:weather, :api_key)
