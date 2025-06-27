@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=metric&zip=452009,in
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 10:24:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '500'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=metric&zip=452009%2cin"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":75.8422,"lat":22.7334},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":24.99,"feels_like":25.5,"temp_min":24.99,"temp_max":24.99,"pressure":1003,"humidity":75,"sea_level":1003,"grnd_level":939},"visibility":10000,"wind":{"speed":6.12,"deg":217,"gust":10.18},"clouds":{"all":100},"dt":1751019840,"sys":{"country":"IN","sunrise":1750983236,"sunset":1751031911},"timezone":19800,"id":0,"name":"Sudama
+        Nagar","cod":200}'
+  recorded_at: Fri, 27 Jun 2025 10:24:00 GMT
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=metric&zip=452009,in
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 10:24:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '500'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=metric&zip=452009%2cin"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":75.8422,"lat":22.7334},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":24.99,"feels_like":25.5,"temp_min":24.99,"temp_max":24.99,"pressure":1003,"humidity":75,"sea_level":1003,"grnd_level":939},"visibility":10000,"wind":{"speed":6.12,"deg":217,"gust":10.18},"clouds":{"all":100},"dt":1751019840,"sys":{"country":"IN","sunrise":1750983236,"sunset":1751031911},"timezone":19800,"id":0,"name":"Sudama
+        Nagar","cod":200}'
+  recorded_at: Fri, 27 Jun 2025 10:24:00 GMT
+recorded_with: VCR 6.3.1
