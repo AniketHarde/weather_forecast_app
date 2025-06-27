@@ -1,0 +1,159 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=imperial&zip=452009
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 09:11:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=imperial&zip=452009"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"cod":"404","message":"city not found"}'
+  recorded_at: Fri, 27 Jun 2025 09:11:44 GMT
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=metric&zip=452009,in
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 09:26:58 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '500'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=metric&zip=452009%2cin"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":75.8422,"lat":22.7334},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":24.54,"feels_like":25.16,"temp_min":24.54,"temp_max":24.54,"pressure":1004,"humidity":81,"sea_level":1004,"grnd_level":939},"visibility":10000,"wind":{"speed":5.33,"deg":209,"gust":9.88},"clouds":{"all":100},"dt":1751016418,"sys":{"country":"IN","sunrise":1750983236,"sunset":1751031911},"timezone":19800,"id":0,"name":"Sudama
+        Nagar","cod":200}'
+  recorded_at: Fri, 27 Jun 2025 09:26:58 GMT
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=imperial&zip=452009,in
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 09:28:07 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '501'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=imperial&zip=452009%2cin"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":75.8422,"lat":22.7334},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":76.17,"feels_like":77.29,"temp_min":76.17,"temp_max":76.17,"pressure":1004,"humidity":81,"sea_level":1004,"grnd_level":939},"visibility":10000,"wind":{"speed":11.92,"deg":209,"gust":22.1},"clouds":{"all":100},"dt":1751016487,"sys":{"country":"IN","sunrise":1750983236,"sunset":1751031911},"timezone":19800,"id":0,"name":"Sudama
+        Nagar","cod":200}'
+  recorded_at: Fri, 27 Jun 2025 09:28:07 GMT
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&units=metric&zip=452009
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 27 Jun 2025 09:50:08 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=metric&zip=452009"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"cod":"404","message":"city not found"}'
+  recorded_at: Fri, 27 Jun 2025 09:50:08 GMT
+recorded_with: VCR 6.3.1

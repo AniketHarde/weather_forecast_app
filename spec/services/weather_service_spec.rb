@@ -4,7 +4,7 @@ RSpec.describe WeatherService do
 
   subject(:service) { described_class.new(zip_code) }
 
-  describe "#get_forecast" do
+  describe "#get_forecast", :vcr do
     it "returns the current temperature for a valid zip code" do
       result = service.get_forecast
 
