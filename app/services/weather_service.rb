@@ -11,7 +11,9 @@ class WeatherService
 
   def get_forecast
     cache_key = "forecast:zip:#{@zip_code}"
-    Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+    from_cache = Rails.cache.exist?(cache_key)
+
+    data = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
       response = HTTParty.get(BASE_URL, query: {
         zip: "#{@zip_code},#{@country_code}",
         units: "metric",
@@ -26,5 +28,7 @@ class WeatherService
         raise StandardError, "Failed to fetch forecast: #{response.code}"
       end
     end
+
+    data.merge(from_cache: from_cache)
   end
 end
