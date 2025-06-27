@@ -1,6 +1,6 @@
 <h1>Weather Forecast for ZIP <%= @zip %></h1>
 
-<p>🌡️ Temperature: <%= @forecast[:temperature] %>°F</p>
+<p>🌡️ Temperature: <%= @forecast[:temperature] %>°C</p>
 <p><em><%= @forecast[:from_cache] ? "⚡ From cache" : "🔄 Live from API" %></em></p>
 
 <%= link_to "Search Again", root_path %>
