@@ -1,21 +1,97 @@
+<div class="min-h-screen bg-gray-50 flex">
+  <!-- Sidebar for Recent History -->
+  <div class="w-80 bg-white shadow-lg border-r border-gray-200 p-6">
+    <div class="sticky top-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+        <span>🕒</span> Recent History
+        <button id="clear-history-btn"
+                class="ml-auto text-xs px-3 py-1 rounded bg-red-100 text-red-600 hover:bg-red-200 transition"
+                type="button">
+          Clear
+        </button>
+      </h3>
 
-<h1>Weather Forecast</h1>
-
-<%= form_with url: weather_show_path, method: :post, local: true do |form| %>
-    <div style="display:flex; flex-direction: column; gap: 10px;">
-        <div style="display:flex; justify-content: space-between; width: 30rem">
-            <%= form.label :zip, "Enter ZIP Code:" %>
-            <%= form.text_field :zip_code, required: true %>
-        </div>
-
-        <div style="display:flex; justify-content: space-between; width: 30rem">
-            <%= form.label :country_code, "Country Code (e.g., in, us):" %>
-            <%= form.text_field :country_code, value: "in" %>
-        </div>
-        <%= form.submit "Get Forecast", style: "width: 10rem; margin-left: 20rem" %>
+      <div id="history-container">
+        <% if @history&.any? %>
+          <div class="space-y-2">
+            <% @history.each do |address| %>
+              <div class="group">
+                <%= link_to address, weather_show_path(address: address), class: "block w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-blue-50 
+                         text-gray-700 hover:text-blue-600 transition duration-200 
+                         border border-transparent hover:border-blue-200 text-sm" %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="text-center py-8" id="empty-history">
+            <div class="text-gray-400 text-4xl mb-3">📍</div>
+            <p class="text-gray-500 text-sm">No recent searches yet</p>
+            <p class="text-gray-400 text-xs mt-1">Your weather searches will appear here</p>
+          </div>
+        <% end %>
+      </div>
     </div>
-<% end %>
+  </div>
 
-<% if flash[:alert] %>
-  <p style="color: red;"><%= flash[:alert] %></p>
-<% end %>
+  <!-- Main Content Area -->
+  <div class="flex-1 flex items-center justify-center p-8">
+    <div class="w-full max-w-md">
+      
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+        <div class="absolute right-95">
+          <button id="clear-cache-btn"
+                  class="bg-yellow-100 text-xs text-black-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-200 transition"
+                  type="button">
+            Clear Cache
+          </button>
+        </div>
+        <!-- Title -->
+        <div class="text-center mb-8">
+          <div class="text-6xl mb-4">🌤️</div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Weather Forecast</h2>
+          <p class="text-gray-600">Enter any address to get current weather conditions</p>
+        </div>
+
+        <!-- Form -->
+        <%= form_with url: weather_show_path, method: :post, local: false, html: { id: "weather-form", class: "space-y-6" } do %>
+          <div>
+            <%= label_tag :address, "Enter Address:", class: "block  font-semibold text-gray-700 mb-2" %>
+            <div class="w-full relative">
+              <%= text_field_tag :address, nil,
+                    id: "address-input",
+                    class: "w-full px-4 py-3 border border-gray-300 rounded-xl 
+                          focus:outline-none focus:ring-2 focus:ring-blue-500 ",
+                    placeholder: "Ex. Indore",
+                    required: true %>
+            </div>
+          </div>
+
+          <div>
+            <%= submit_tag "Get Weather Forecast", 
+                id: "submit-btn",
+                class: "w-full bg-gradient-to-r from-blue-500 to-blue-600 
+                       hover:from-blue-600 hover:to-blue-700 
+                       text-white font-bold py-3 px-6 rounded-xl 
+                       transition transform hover:scale-105 
+                       shadow-lg hover:shadow-xl disabled:opacity-50 
+                       disabled:cursor-not-allowed disabled:transform-none" %>
+          </div>
+        <% end %>
+
+        <!-- Quick Examples -->
+        <div class="mt-8 pt-6 border-t border-gray-100">
+          <p class="text-xs text-gray-500 mb-3 text-center">Quick examples:</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <% ["Nagpur, India, 440001", "Delhi, India, 110001", "Jaipur, India, 302001"].each do |city| %>
+              <button type="button" onclick="fillAddress('<%= city %>')" 
+                      class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 
+                             px-3 py-1 rounded-full transition-colors">
+                <%= city %>
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,9 +19,21 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app %>
+    <%= javascript_include_tag 'common' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% flash.each do |key, message| %>
+      <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 min-w-[300px] max-w-md shadow-lg px-6 py-4 rounded-lg text-white flex items-center justify-between
+                  <%= key == 'notice' ? 'bg-green-400' : 'bg-red-400' %>"
+          id="flash-popup-<%= key %>">
+        <span><%= message %></span>
+        <button type="button" class="ml-4 text-2xl leading-none focus:outline-none" onclick="this.parentElement.style.display='none'">&times;</button>
+      </div>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

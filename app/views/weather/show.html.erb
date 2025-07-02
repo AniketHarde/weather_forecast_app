@@ -1,6 +1,62 @@
-<h1>Weather Forecast for ZIP <%= @zip %></h1>
+<div class="min-h-screen flex items-center justify-center bg-white py-10">
+  <div class="w-full max-w-md">
+    <div class="bg-white border border-gray-200 rounded-2xl shadow-xl p-8">
+      <h1 class="text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-gray-800">
+        <span>🌦️</span> Weather Forecast
+      </h1>
 
-<p>🌡️ Temperature: <%= @forecast[:temperature] %>°C</p>
-<p><em><%= @forecast[:from_cache] ? "⚡ From cache" : "🔄 Live from API" %></em></p>
+      <% if @error %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 text-center">
+          <%= @error %>
+        </div>
+      <% else %>
+        <!-- City Name and Fetch Time -->
+        <div class="mb-4 text-center">
+          <div class="text-lg font-semibold text-gray-800">
+            <%= @forecast[:place] %>
+          </div>
+          <div class="text-xs text-gray-500">
+            Data fetched at <%= @forecast[:fetched_at].strftime("%d %b %Y, %I:%M %p") %>
+          </div>
+        </div>
 
-<%= link_to "Search Again", root_path %>
+        <div class="flex flex-col items-center gap-4 mb-6">
+          <div class="text-5xl">🌡️</div>
+          <div class="text-2xl font-semibold text-blue-700">
+            <%= @forecast[:temperature] %> °C
+          </div>
+
+          <!-- Weather Description -->
+          <div class="text-gray-600 text-sm mb-2">
+            <%= @forecast[:weather].capitalize %>
+          </div>
+
+          <div class="flex gap-4 text-gray-700 text-sm">
+            <span class="bg-blue-100 px-3 py-1 rounded-full font-medium">
+              High: <%= @forecast[:temp_max] %> °C
+            </span>
+            <span class="bg-blue-100 px-3 py-1 rounded-full font-medium">
+              Low: <%= @forecast[:temp_min] %> °C
+            </span>
+          </div>
+
+          <div class="mt-2">
+            <% if @forecast[:from_cache] %>
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold">
+                🗄️ From Cache
+              </span>
+            <% else %>
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-semibold">
+                ⚡ Live Data
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="text-center">
+        <%= link_to "← Back", root_path, class: "inline-block mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow transition-all duration-150" %>
+      </div>
+    </div>
+  </div>
+</div>

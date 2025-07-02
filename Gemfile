@@ -11,6 +11,10 @@ gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "pry"
+
+gem "tailwindcss-rails"
+
 # Makes HTTP requests simple [https://github.com/jnunemaker/httparty]
 gem 'httparty'
 # Geocoding and reverse geocoding for Rails [https://github.com/alexreisner/geocoder]
