@@ -1,19 +1,59 @@
 class WeatherController < ApplicationController
   def index
-    flash.clear
+    @history = session[:history] || []
+  end
+
+  def clear_history
+    session[:history] = []
+    respond_to do |format|
+      format.json { render json: { success: true } }
+    end
+  end
+
+  def clear_cache
+    Rails.cache.clear
+    respond_to do |format|
+      format.json { render json: { success: true } }
+    end
   end
 
   def show
-    zip = params[:zip_code]
-    country = params[:country_code]
+    address = params[:address]
+    update_history(address)
 
-    service = WeatherService.new(zip_code: zip, country_code: country)
+    location = AddressLookupService.new(address).lookup
+
+    unless valid_location?(location)
+      flash[:alert] = "Address not found. Please try again by entering full address with a postal code."
+      redirect_to root_path and return
+    end
 
     begin
-      @forecast = service.get_forecast
-    rescue StandardError => e
-      flash[:alert] = "Failed to fetch forecast: #{e.message}"
-      render :index
+      @forecast = fetch_forecast(location)
+    rescue => e
+      flash[:alert] = e.message
+      redirect_to root_path and return
     end
+  end
+
+  private
+
+  def update_history(address)
+    session[:history] ||= []
+    session[:history].unshift(address)
+    session[:history] = session[:history].uniq.first(5)
+  end
+
+  def valid_location?(location)
+    location.present? && location.postal_code.present?
+  end
+
+  def fetch_forecast(location)
+    WeatherService.new(
+      lat: location.latitude,
+      lon: location.longitude,
+      zip_code: location.postal_code,
+      country_code: location.country_code
+    ).get_forecast
   end
 end
