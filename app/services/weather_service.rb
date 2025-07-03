@@ -5,11 +5,12 @@ class WeatherService
   DEFAULT_UNITS = "metric"
   TIMEZONE = "Asia/Kolkata"
 
-  def initialize(lat: nil, lon: nil, zip_code: nil, country_code: nil)
+  def initialize(lat: nil, lon: nil, zip_code: nil, country_code: nil, address: nil)
     @lat = lat
     @lon = lon
     @zip_code = zip_code
     @country_code = country_code
+    @address = address
     @api_key = Rails.application.credentials.dig(:weather, :api_key)
   end
 
@@ -48,7 +49,7 @@ class WeatherService
       temperature: response["main"]["temp"],
       temp_min: response["main"]["temp_min"],
       temp_max: response["main"]["temp_max"],
-      place: response["name"],
+      place: @address,
       weather: response["weather"].first["description"],
       fetched_at: Time.at(response["dt"]).in_time_zone(TIMEZONE)
     }

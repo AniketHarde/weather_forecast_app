@@ -23,7 +23,7 @@ class WeatherController < ApplicationController
 
     location = AddressLookupService.new(address).lookup
 
-    unless valid_location?(location)
+    if location.nil?
       flash[:alert] = "Address not found. Please try again by entering full address with a postal code."
       redirect_to root_path and return
     end
@@ -44,16 +44,13 @@ class WeatherController < ApplicationController
     session[:history] = session[:history].uniq.first(5)
   end
 
-  def valid_location?(location)
-    location.present? && location.postal_code.present?
-  end
-
   def fetch_forecast(location)
     WeatherService.new(
       lat: location.latitude,
       lon: location.longitude,
       zip_code: location.postal_code,
-      country_code: location.country_code
+      country_code: location.country_code,
+      address: location.address
     ).get_forecast
   end
 end
